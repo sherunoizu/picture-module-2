@@ -1,16 +1,20 @@
 export const modals = () => {
   let isBtnPressed: boolean = false;
 
-  const modalTimeout = showModalByTime('.popup-consultation', 60000);
+  const modalTimeout: NodeJS.Timeout = showModalByTime(
+    '.popup-consultation',
+    60000
+  );
 
   interface IModalSelectors {
     triggerSelector: string;
     modalSelector: string;
     closeSelector: string;
     destroyTrigger: boolean;
+    animationClass?: string | null;
   }
 
-  function bindModal(selectors: IModalSelectors) {
+  function bindModal(selectors: IModalSelectors): void {
     const triggers = document.querySelectorAll(selectors.triggerSelector);
     const modal = document.querySelector(
       selectors.modalSelector
@@ -18,10 +22,14 @@ export const modals = () => {
     const close = document.querySelector(
       selectors.closeSelector
     ) as HTMLElement;
-    modal.classList.add('hide');
     const windows = document.querySelectorAll(
       '[data-modal]'
     ) as NodeListOf<HTMLElement>;
+    const animationClass: string | null = selectors.animationClass
+      ? selectors.animationClass
+      : null;
+
+    modal.classList.add('hide');
 
     const hideAllModals = (): void => {
       windows.forEach(window => {
@@ -38,7 +46,8 @@ export const modals = () => {
 
         if (e.target) {
           e.preventDefault();
-          showModal(modal);
+          showModal(modal, animationClass);
+
           modal.focus();
         }
       });
@@ -58,20 +67,26 @@ export const modals = () => {
     });
   }
 
-  function showModal(modal: HTMLDivElement) {
+  function showModal(
+    modal: HTMLDivElement,
+    animationClass: string | null
+  ): void {
     clearTimeout(modalTimeout);
+
     const scrollSize: number = calcScroll();
     const giftItem = document.querySelector(
       '.fixed-gift'
     ) as HTMLImageElement | null;
 
     modal.classList.remove('hide');
-    modal.classList.add('show', 'animated', 'jackInTheBox'); // jackInTheBox
+    modal.classList.add('show', 'animated', animationClass); // jackInTheBox
     document.body.style.overflow = 'hidden';
     document.body.style.marginRight = `${scrollSize}px`;
+
     if (giftItem) {
       giftItem.style.marginRight = `${scrollSize}px`;
     }
+
     document.addEventListener(
       'keydown',
       e => {
@@ -83,10 +98,11 @@ export const modals = () => {
     );
   }
 
-  function hideModal(modal: Element) {
+  function hideModal(modal: Element): void {
     const giftItem = document.querySelector(
       '.fixed-gift'
     ) as HTMLImageElement | null;
+
     modal.classList.remove('show');
     modal.classList.add('hide');
     document.body.style.overflow = '';
@@ -96,7 +112,7 @@ export const modals = () => {
     }
   }
 
-  function showModalByTime(selector: string, time: number) {
+  function showModalByTime(selector: string, time: number): NodeJS.Timeout {
     const cuurentModal: Element = document.querySelector(
       selector
     ) as HTMLElement;
@@ -106,6 +122,7 @@ export const modals = () => {
       const giftItem = document.querySelector(
         '.fixed-gift'
       ) as HTMLImageElement | null;
+
       cuurentModal.classList.remove('hide');
       cuurentModal.classList.add('show');
       document.body.style.overflow = 'hidden';
@@ -118,6 +135,7 @@ export const modals = () => {
 
   function calcScroll(): number {
     const div = document.createElement('div');
+    const scrollWidth = div.offsetWidth - div.clientWidth;
 
     div.style.width = '50px';
     div.style.height = '50px';
@@ -126,18 +144,18 @@ export const modals = () => {
 
     document.body.appendChild(div);
 
-    const scrollWidth = div.offsetWidth - div.clientWidth;
-
     div.remove();
 
     return scrollWidth;
   }
 
-  function openByScroll() {
+  function openByScroll(): void {
     const giftSelector = '.fixed-gift';
+
     window.addEventListener('scroll', () => {
-      const doc = document.documentElement;
-      const isDown = window.scrollY + doc.clientHeight >= doc.scrollHeight;
+      const doc: HTMLElement = document.documentElement;
+      const isDown: boolean =
+        window.scrollY + doc.clientHeight >= doc.scrollHeight;
 
       if (!isBtnPressed && isDown) {
         (document.querySelector(giftSelector) as HTMLDivElement).click();
@@ -163,7 +181,8 @@ export const modals = () => {
     triggerSelector: '.fixed-gift',
     modalSelector: '.popup-gift',
     closeSelector: '.popup-gift .popup-close',
-    destroyTrigger: true
+    destroyTrigger: true,
+    animationClass: 'jackInTheBox'
   };
 
   openByScroll();
