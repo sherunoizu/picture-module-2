@@ -91,7 +91,7 @@ export const forms = (): void => {
 
       const formData = new FormData(form);
       const isFormWithImg =
-        (form.closest('.popup-design') ? true : false) ||
+        Boolean(form.closest('.popup-design')) ||
         form.classList.contains('calc_form');
       const api: string = isFormWithImg ? paths.designer : paths.question;
 
