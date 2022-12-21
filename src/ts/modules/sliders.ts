@@ -20,7 +20,6 @@ export const sliders = ({
     slidesSelector
   ) as NodeListOf<Element>;
   const directionAnimations: string[] = getDirectionAnimations();
-  console.log(directionAnimations);
   let isAutoplayPaused: NodeJS.Timer;
 
   function showSlides(n: number): void {
