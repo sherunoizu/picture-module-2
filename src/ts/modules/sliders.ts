@@ -66,11 +66,13 @@ export const sliders = ({
   }
 
   function stopAutoplayOnMouseHover(): void {
-    slides[0].addEventListener('mouseenter', () => {
-      clearInterval(isAutoplayPaused);
-    });
-    slides[0].addEventListener('mouseleave', () => {
-      setAutoplay();
+    slides.forEach(slide => {
+      slide.addEventListener('mouseenter', () => {
+        clearInterval(isAutoplayPaused);
+      });
+      slide.addEventListener('mouseleave', () => {
+        setAutoplay();
+      });
     });
   }
 
