@@ -1,3 +1,5 @@
+import {postData} from '../services';
+
 export const forms = (): void => {
   const forms = document.querySelectorAll(
     'form'
@@ -35,15 +37,6 @@ export const forms = (): void => {
   const paths: IPaths = {
     designer: 'assets/server.php',
     question: 'assets/question.php'
-  };
-
-  const postData = async (url: string, data: FormData): Promise<string> => {
-    const result = await fetch(url, {
-      method: 'POST',
-      body: data
-    });
-
-    return await result.text();
   };
 
   const clearInputs = (): void => {
