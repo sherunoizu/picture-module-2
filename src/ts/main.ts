@@ -1,5 +1,8 @@
 import {modals} from './modules';
 import {sliders, ISliders} from './modules';
+import {forms} from './modules';
+import {mask} from './modules';
+import {checkTextInputs} from './modules';
 
 window.addEventListener('DOMContentLoaded', () => {
   modals();
@@ -17,4 +20,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   sliders(feedbackSliderSelectors);
   sliders(mainSliderSelectors);
+  forms();
+  mask('[name="phone"]');
+  checkTextInputs('[name="name"]');
+  checkTextInputs('[name="message"]');
 });
