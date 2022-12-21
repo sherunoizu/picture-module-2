@@ -20,6 +20,7 @@ export const sliders = ({
     slidesSelector
   ) as NodeListOf<Element>;
   const directionAnimations: string[] = getDirectionAnimations();
+  console.log(directionAnimations);
   let isAutoplayPaused: NodeJS.Timer;
 
   function showSlides(n: number): void {
@@ -62,6 +63,9 @@ export const sliders = ({
       case 'horizontal': {
         return ['slideInLeft', 'slideInRight'];
       }
+      default:
+        console.error('wrong "slider direction"');
+        return ['slideInLeft', 'slideInRight'];
     }
   }
 
