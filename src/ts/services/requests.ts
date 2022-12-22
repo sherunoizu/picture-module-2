@@ -4,7 +4,13 @@ interface IGetData {
   link: string;
 }
 
-export {IGetData};
+interface ICalculatorValues {
+  size: number[];
+  material: number[];
+  options: number[];
+}
+
+export {IGetData, ICalculatorValues};
 
 export const postData = async (
   url: string,
@@ -18,7 +24,9 @@ export const postData = async (
   return await result.text();
 };
 
-export const getData = async (url: string): Promise<[IGetData]> => {
+export const getData = async (
+  url: string
+): Promise<[IGetData] | ICalculatorValues> => {
   const result = await fetch(url);
 
   if (!result.ok) {

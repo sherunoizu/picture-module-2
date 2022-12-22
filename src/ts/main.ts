@@ -4,6 +4,7 @@ import {forms} from './modules';
 import {mask} from './modules';
 import {checkTextInputs} from './modules';
 import {showMoreStyles, IShowMoreStyles} from './modules';
+import {calculator, ICalculator} from './modules';
 
 window.addEventListener('DOMContentLoaded', () => {
   modals();
@@ -24,6 +25,14 @@ window.addEventListener('DOMContentLoaded', () => {
     wrapper: '#styles .row'
   } as IShowMoreStyles;
 
+  const calculatorSelectors = {
+    sizeSelector: 'select#size',
+    materialSelector: 'select#material',
+    optionsSelector: 'select#options',
+    promocodeSelector: '.promocode',
+    resultSelector: '.calc-price'
+  } as ICalculator;
+
   sliders(feedbackSliderSelectors);
   sliders(mainSliderSelectors);
   forms();
@@ -31,4 +40,5 @@ window.addEventListener('DOMContentLoaded', () => {
   checkTextInputs('[name="name"]');
   checkTextInputs('[name="message"]');
   showMoreStyles(showMoreCardsSelectors);
+  calculator(calculatorSelectors);
 });

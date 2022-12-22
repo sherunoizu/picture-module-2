@@ -1,1 +1,1 @@
-export {postData, getData, IGetData} from './requests';
+export {postData, getData, IGetData, ICalculatorValues} from './requests';

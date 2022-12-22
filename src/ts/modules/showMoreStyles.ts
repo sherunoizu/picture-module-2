@@ -12,7 +12,7 @@ export const showMoreStyles = ({trigger, wrapper}: IShowMoreStyles): void => {
 
   button.addEventListener('click', () => {
     getData('http://localhost:3000/styles')
-      .then(result => createCards(result))
+      .then(result => createCards(result as [IGetData]))
       .catch(error => {
         addErrorMessage(error);
       });

@@ -10,6 +10,9 @@ export const forms = (): void => {
   const uploads = document.querySelectorAll(
     '[name="upload"]'
   ) as NodeListOf<HTMLInputElement>;
+  const selects = document.querySelectorAll(
+    '[data-calc]'
+  ) as NodeListOf<HTMLSelectElement>;
 
   interface IMessage {
     loading: string;
@@ -83,7 +86,21 @@ export const forms = (): void => {
       statusMessage.appendChild(textMessage);
 
       const formData = new FormData(form);
-      const isFormWithImg =
+
+      const finalSum = document
+        .querySelector('.calc-price')
+        .getAttribute('summ');
+
+      if (finalSum) {
+        formData.append('finalSum', finalSum);
+
+        selects.forEach(select => {
+          const selectKey = select.getAttribute('id');
+          formData.append(`${selectKey}`, select.value);
+        });
+      }
+
+      const isFormWithImg: boolean =
         Boolean(form.closest('.popup-design')) ||
         form.classList.contains('calc_form');
       const api: string = isFormWithImg ? paths.designer : paths.question;
