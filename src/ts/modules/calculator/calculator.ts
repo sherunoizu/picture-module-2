@@ -29,12 +29,10 @@ export const calculator = ({
   ) as HTMLInputElement;
   const resultBlock = document.querySelector(resultSelector) as HTMLDivElement;
 
-  let sum = 0;
-
   setCalculatorValuesInHTML(sizeBlock, materialBlock, optionsBlock);
 
   const calculatorFunction = (): void => {
-    sum = Math.round(
+    const sum: number = Math.round(
       +sizeBlock.value * +materialBlock.value + +optionsBlock.value
     );
 
