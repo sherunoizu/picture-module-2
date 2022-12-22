@@ -3,6 +3,7 @@ import {sliders, ISliders} from './modules';
 import {forms} from './modules';
 import {mask} from './modules';
 import {checkTextInputs} from './modules';
+import {showMoreStyles, IShowMoreStyles} from './modules';
 
 window.addEventListener('DOMContentLoaded', () => {
   modals();
@@ -18,10 +19,16 @@ window.addEventListener('DOMContentLoaded', () => {
     direction: 'vertical'
   } as ISliders;
 
+  const showMoreCardsSelectors = {
+    trigger: '.button-styles',
+    wrapper: '#styles .row'
+  } as IShowMoreStyles;
+
   sliders(feedbackSliderSelectors);
   sliders(mainSliderSelectors);
   forms();
   mask('[name="phone"]');
   checkTextInputs('[name="name"]');
   checkTextInputs('[name="message"]');
+  showMoreStyles(showMoreCardsSelectors);
 });
