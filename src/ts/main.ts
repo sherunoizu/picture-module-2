@@ -5,6 +5,7 @@ import {mask} from './modules';
 import {checkTextInputs} from './modules';
 import {showMoreStyles, IShowMoreStyles} from './modules';
 import {calculator, ICalculator} from './modules';
+import {filter} from './modules';
 
 window.addEventListener('DOMContentLoaded', () => {
   modals();
@@ -41,4 +42,5 @@ window.addEventListener('DOMContentLoaded', () => {
   checkTextInputs('[name="message"]');
   showMoreStyles(showMoreCardsSelectors);
   calculator(calculatorSelectors);
+  filter();
 });
