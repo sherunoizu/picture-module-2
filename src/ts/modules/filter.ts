@@ -47,7 +47,6 @@ export const filter = () => {
       ) as NodeListOf<HTMLDivElement> | null;
 
       button.addEventListener('click', () => {
-        console.log(button, mark.length);
         items.forEach(item => {
           item.classList.remove('active');
         });
