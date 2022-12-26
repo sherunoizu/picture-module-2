@@ -5,13 +5,13 @@ export const pictureSize = (pictureSelector: string): void => {
 
   const showImg = (block: HTMLDivElement): void => {
     const image = block.querySelector('img') as HTMLImageElement;
-    const src: string[] = image.getAttribute('src').split('.');
+    const [name, ext]: string[] = image.getAttribute('src').split('.');
     const pContent = block.querySelectorAll(
       'p:not(.sizes-hit'
     ) as NodeListOf<HTMLParagraphElement>;
 
     block.addEventListener('mouseover', () => {
-      image.setAttribute('src', `${src[0]}-1.${src[1]}`);
+      image.setAttribute('src', `${name}-1.${ext}`);
       pContent.forEach(p => (p.style.display = 'none'));
     });
   };
@@ -24,7 +24,7 @@ export const pictureSize = (pictureSelector: string): void => {
     ) as NodeListOf<HTMLParagraphElement>;
 
     block.addEventListener('mouseout', () => {
-      image.setAttribute('src', `${src}`);
+      image.setAttribute('src', src);
       pContent.forEach(p => (p.style.display = 'block'));
     });
   };
