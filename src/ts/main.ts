@@ -7,6 +7,7 @@ import {showMoreStyles, IShowMoreStyles} from './modules';
 import {calculator, ICalculator} from './modules';
 import {filter} from './modules';
 import {pictureSize} from './modules';
+import {accordion, IAccordion} from './modules/accordion';
 
 window.addEventListener('DOMContentLoaded', () => {
   modals();
@@ -35,6 +36,11 @@ window.addEventListener('DOMContentLoaded', () => {
     resultSelector: '.calc-price'
   } as ICalculator;
 
+  const accordionSelectors = {
+    triggersSelector: '.accordion-heading',
+    onlyOneVisible: true
+  } as IAccordion;
+
   sliders(feedbackSliderSelectors);
   sliders(mainSliderSelectors);
   forms();
@@ -45,4 +51,5 @@ window.addEventListener('DOMContentLoaded', () => {
   calculator(calculatorSelectors);
   filter();
   pictureSize('.sizes-block');
+  accordion(accordionSelectors);
 });
