@@ -19,13 +19,14 @@ export const accordion = ({
 
       button.classList.remove('active-style');
       thisContent.classList.remove('active-content');
-      thisContent.style.maxHeight = `0px`;
+      thisContent.style.maxHeight = `0`;
     });
   };
 
   buttons.forEach(button => {
     button.addEventListener('click', function (event) {
       const thisContent = this.nextElementSibling as HTMLDivElement;
+      const contentPadding = 80;
       const target = event.target as HTMLButtonElement;
       const targetParent = target.parentNode as HTMLButtonElement;
       const isTargetActive: boolean =
@@ -40,9 +41,11 @@ export const accordion = ({
       thisContent.classList.toggle('active-content');
 
       if (this.classList.contains('active-style')) {
-        thisContent.style.maxHeight = `${thisContent.scrollHeight + 80}px`;
+        thisContent.style.maxHeight = `${
+          thisContent.scrollHeight + contentPadding
+        }px`;
       } else {
-        thisContent.style.maxHeight = `0px`;
+        thisContent.style.maxHeight = `0`;
       }
     });
   });
