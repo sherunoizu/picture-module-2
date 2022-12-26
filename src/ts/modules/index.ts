@@ -6,3 +6,4 @@ export {checkTextInputs} from './checkTextInputs';
 export {showMoreStyles, IShowMoreStyles} from './showMoreStyles';
 export {calculator, ICalculator} from './calculator';
 export {filter} from './filter';
+export {pictureSize} from './pictureSize';
