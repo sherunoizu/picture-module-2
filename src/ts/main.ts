@@ -6,6 +6,7 @@ import {checkTextInputs} from './modules';
 import {showMoreStyles, IShowMoreStyles} from './modules';
 import {calculator, ICalculator} from './modules';
 import {filter} from './modules';
+import {pictureSize} from './modules';
 
 window.addEventListener('DOMContentLoaded', () => {
   modals();
@@ -43,4 +44,5 @@ window.addEventListener('DOMContentLoaded', () => {
   showMoreStyles(showMoreCardsSelectors);
   calculator(calculatorSelectors);
   filter();
+  pictureSize('.sizes-block');
 });
