@@ -7,7 +7,8 @@ import {showMoreStyles, IShowMoreStyles} from './modules';
 import {calculator, ICalculator} from './modules';
 import {filter} from './modules';
 import {pictureSize} from './modules';
-import {accordion, IAccordion} from './modules/accordion';
+import {accordion, IAccordion} from './modules';
+import {burger, IBurger} from './modules';
 
 window.addEventListener('DOMContentLoaded', () => {
   modals();
@@ -41,15 +42,28 @@ window.addEventListener('DOMContentLoaded', () => {
     onlyOneVisible: true
   } as IAccordion;
 
+  const burgerSelectors = {
+    menuSelector: '.burger-menu',
+    burgerSelector: '.burger'
+  } as IBurger;
+
   sliders(feedbackSliderSelectors);
   sliders(mainSliderSelectors);
+
   forms();
   mask('[name="phone"]');
   checkTextInputs('[name="name"]');
   checkTextInputs('[name="message"]');
+
   showMoreStyles(showMoreCardsSelectors);
+
   calculator(calculatorSelectors);
+
   filter();
+
   pictureSize('.sizes-block');
+
   accordion(accordionSelectors);
+
+  burger(burgerSelectors);
 });
