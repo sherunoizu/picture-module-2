@@ -9,6 +9,7 @@ import {filter} from './modules';
 import {pictureSize} from './modules';
 import {accordion, IAccordion} from './modules';
 import {burger, IBurger} from './modules';
+import {scrolling} from './modules';
 
 window.addEventListener('DOMContentLoaded', () => {
   modals();
@@ -66,4 +67,6 @@ window.addEventListener('DOMContentLoaded', () => {
   accordion(accordionSelectors);
 
   burger(burgerSelectors);
+
+  scrolling('.pageup');
 });
