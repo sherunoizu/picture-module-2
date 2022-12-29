@@ -51,9 +51,8 @@ export const forms = (): void => {
 
   uploads.forEach(upload => {
     upload.addEventListener('input', () => {
-      const splitFileName: string[] = upload.files[0].name.split('.');
-      const fileName: string = splitFileName[0];
-      const fileType: string = splitFileName[1];
+      const [fileName, fileType]: string[] = upload.files[0].name.split('.');
+
       const dots: string = fileName.length > 5 ? '...' : '.';
       const visibleFileName = fileName.slice(0, 5) + dots + fileType;
 

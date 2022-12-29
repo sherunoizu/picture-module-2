@@ -10,3 +10,4 @@ export {pictureSize} from './pictureSize';
 export {accordion, IAccordion} from './accordion';
 export {burger, IBurger} from './burger';
 export {scrolling} from './scrolling';
+export {drop} from './drop';
