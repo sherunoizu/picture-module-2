@@ -12,57 +12,81 @@ export const scrolling = (upSelector: string) => {
     }
   });
 
+  const bindSmoothScrolling = (): void => {
+    const links = document.querySelectorAll(
+      '[href^="#"]'
+    ) as NodeListOf<HTMLAnchorElement>;
+
+    links.forEach(link => {
+      const id: string = link.getAttribute('href');
+      const scrollToThisElement: Element =
+        id === '#' ? null : document.querySelector(id);
+
+      link.addEventListener('click', event => {
+        event.preventDefault();
+
+        scrollToThisElement.scrollIntoView({behavior: 'smooth'});
+      });
+
+      link.setAttribute('href', '');
+    });
+  };
+
+  bindSmoothScrolling();
+
+  // ____________________________________
   // RAF scrolling
 
-  const links = document.querySelectorAll(
-    '[href^="#"]'
-  ) as NodeListOf<HTMLAnchorElement>;
-  const speed: number = 0.3;
+  // const links = document.querySelectorAll(
+  //   '[href^="#"]'
+  // ) as NodeListOf<HTMLAnchorElement>;
+  // const speed: number = 0.3;
 
-  links.forEach(link => {
-    link.addEventListener('click', function (event) {
-      event.preventDefault();
+  // links.forEach(link => {
+  //   link.addEventListener('click', function (event) {
+  //     event.preventDefault();
 
-      const element = document.documentElement as HTMLElement;
-      const body = document.body as HTMLElement;
-      const scrollTop: number = Math.round(body.scrollTop || element.scrollTop);
-      const hash: string = this.hash;
-      const toBlock: number = document
-        .querySelector(hash)
-        .getBoundingClientRect().top;
+  //     const element = document.documentElement as HTMLElement;
+  //     const body = document.body as HTMLElement;
+  //     const scrollTop: number = Math.round(body.scrollTop || element.scrollTop);
+  //     const hash: string = this.hash;
+  //     const toBlock: number = document
+  //       .querySelector(hash)
+  //       .getBoundingClientRect().top;
 
-      let start: number = null;
+  //     let start: number = null;
 
-      requestAnimationFrame(step);
+  //     requestAnimationFrame(step);
 
-      function step(time: number): void {
-        if (start === null) {
-          start = time;
-        }
+  //     function step(time: number): void {
+  //       if (start === null) {
+  //         start = time;
+  //       }
 
-        const animationProgress: number = time - start;
-        const yCoordinate: number =
-          toBlock < 0
-            ? Math.max(
-                scrollTop - animationProgress / speed,
-                scrollTop + toBlock
-              )
-            : Math.min(
-                scrollTop + animationProgress / speed,
-                scrollTop + toBlock
-              );
+  //       const animationProgress: number = time - start;
+  //       const yCoordinate: number =
+  //         toBlock < 0
+  //           ? Math.max(
+  //               scrollTop - animationProgress / speed,
+  //               scrollTop + toBlock
+  //             )
+  //           : Math.min(
+  //               scrollTop + animationProgress / speed,
+  //               scrollTop + toBlock
+  //             );
 
-        document.documentElement.scrollTo(0, yCoordinate);
+  //       document.documentElement.scrollTo(0, yCoordinate);
 
-        if (yCoordinate != scrollTop + toBlock) {
-          requestAnimationFrame(step);
-        } else {
-          location.hash = hash;
-        }
-      }
-    });
-  });
+  //       if (yCoordinate != scrollTop + toBlock) {
+  //         requestAnimationFrame(step);
+  //       } else {
+  //         location.hash = hash;
+  //       }
+  //     }
+  //   });
+  // });
 
+  // ____________________________________
   // Pure JS scrolling
 
   // interface ISmoothScroll {
