@@ -10,6 +10,7 @@ import {pictureSize} from './modules';
 import {accordion, IAccordion} from './modules';
 import {burger, IBurger} from './modules';
 import {scrolling} from './modules';
+import {drop} from './modules';
 
 window.addEventListener('DOMContentLoaded', () => {
   modals();
@@ -69,4 +70,6 @@ window.addEventListener('DOMContentLoaded', () => {
   burger(burgerSelectors);
 
   scrolling('.pageup');
+
+  drop();
 });
